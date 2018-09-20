@@ -1,4 +1,5 @@
-package com.gui;
+package com.gui.frame;
+
 import com.calendar.*;
 import java.util.*;
 
@@ -14,10 +15,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import com.gui.panel.*;
 
 public class CMABoard extends JFrame {
 
 	private JPanel contentPane;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -25,25 +28,27 @@ public class CMABoard extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CMABoard frame = new CMABoard();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					CMABoard frame = new CMABoard();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
 	public CMABoard() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -238,8 +243,6 @@ public class CMABoard extends JFrame {
 		});
 		btnSubmit.setBounds(172, 223, 95, 38);
 		contentPane.add(btnSubmit);
-		
-		
 		
 		
 		
