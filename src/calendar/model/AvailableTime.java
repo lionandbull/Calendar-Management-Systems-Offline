@@ -1,9 +1,9 @@
 package calendar.model;
 
 public class AvailableTime {
-	String time;
-	Boolean available = true;
-	Boolean reserved = false;
+	public String time;
+	public Boolean available = true;
+	public Boolean reserved = false;
 	
 	public AvailableTime(String time) {
 		this.time = time;

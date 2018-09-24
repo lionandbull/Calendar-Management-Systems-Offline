@@ -5,9 +5,11 @@ import java.util.Calendar;
 public class Parameters {
 	
 	// Starting date
+	static int SD_year;
 	static int SD_month;
 	static int SD_day;
 	// Ending date
+	static int ED_year;
 	static int ED_month;
 	static int ED_day;
 	// Earliest Hour
@@ -22,11 +24,17 @@ public class Parameters {
 	static int duration;
 	
 	// -------------- Set starting/ending dates and earliest/latest hours ------------------
+	public static void setStartingDateYear(String year) {
+		SD_year = Integer.parseInt(year);
+	}
 	public static void setStartingDateMonth(String month) {
 		SD_month = Integer.parseInt(month);
 	}
 	public static void setStartingDateDay(String day) {
 		SD_day = Integer.parseInt(day);
+	}
+	public static void setEndingDateYear(String year) {
+		ED_year = Integer.parseInt(year);
 	}
 	public static void setEndingDateMonth(String month) {
 		ED_month = Integer.parseInt(month);
@@ -69,7 +77,8 @@ public class Parameters {
 	
 	
 	public static String myString() {
-		String s = Integer.toString(SD_month) + Integer.toString(SD_day) + Integer.toString(ED_month) + Integer.toString(ED_day) +
+		String s = Integer.toString(SD_year) + "/" + Integer.toString(SD_month) + "/" + Integer.toString(SD_day) + "-" + Integer.toString(ED_year)
+		+ "/" +Integer.toString(ED_month) + "/" + Integer.toString(ED_day) + " " +
 				Integer.toString(EH_hour) + Integer.toString(EH_min) + Integer.toString(LH_hour) + Integer.toString(LH_min) + Integer.toString(duration);
 		s = s + name + location + organizer;
 		return s;

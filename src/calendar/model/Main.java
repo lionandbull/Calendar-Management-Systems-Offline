@@ -7,15 +7,15 @@ import util.MyUtility;
 public class Main {
 	public static void main(String[] args) {
 		
-		Calendar startingDate_ = MyUtility.calendarSetDate(1, 1);
-		Calendar endingDate_ = MyUtility.calendarSetDate(2, 20);
-		Calendar earliestHour_ = MyUtility.calendarSetTime(9, 0);
-		Calendar latestHour_ = MyUtility.calendarSetTime(15, 0);
-		MyCalendar calendar = new MyCalendar("Personal", "Wade", startingDate_, endingDate_, 
-				earliestHour_, latestHour_, 20, "Home");
-		
-		System.out.println(calendar.availableDates.values().iterator().next().timeSlot.values().iterator().next());
-		System.out.println(calendar.availableDates.values().iterator().next().toTimeArrayList());
+//		Calendar startingDate_ = MyUtility.calendarSetDate(1, 1);
+//		Calendar endingDate_ = MyUtility.calendarSetDate(2, 20);
+//		Calendar earliestHour_ = MyUtility.calendarSetTime(9, 0);
+//		Calendar latestHour_ = MyUtility.calendarSetTime(15, 0);
+//		MyCalendar calendar = new MyCalendar("Personal", "Wade", startingDate_, endingDate_, 
+//				earliestHour_, latestHour_, 20, "Home");
+//		
+//		System.out.println(calendar.availableDates.values().iterator().next().timeSlot.values().iterator().next());
+//		System.out.println(calendar.availableDates.values().iterator().next().toTimeArrayList());
 		
 //		// add available date
 //		calendar.addDate("1/3");

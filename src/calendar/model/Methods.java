@@ -8,29 +8,33 @@ public class Methods {
 		if (calendar.availableDates.get(date).available == true &&
 			calendar.availableDates.get(date).timeSlot.get(time).available == true &&
 			calendar.availableDates.get(date).timeSlot.get(time).reserved == false){
-			
 			Meeting meeting = new Meeting(person, date, time, calendar.location);
-			calendar.availableDates.get(date).reserved = true;
+//			calendar.availableDates.get(date).reserved = true;
 			calendar.availableDates.get(date).timeSlot.get(time).reserved = true;
 			calendar.addMeeting(meeting);
+			calendar.meetingsString.add(meeting.meetDate);
+			
 		}
-		else if (calendar.availableDates.get(date) == null) {
-			throw new Error("This date is out of the range!");
-		}
-		else if (calendar.availableDates.get(date).available == false) {
-			throw new Error("This date is not available!");
-		}
-		else if (calendar.availableDates.get(date).available == true &&
-				calendar.availableDates.get(date).timeSlot.get(time).available == true &&
-				calendar.availableDates.get(date).timeSlot.get(time).reserved == true) {
-			throw new Error("This time has been reserved!");
-		}
-		
-		else if (calendar.availableDates.get(date).available == true &&
-				calendar.availableDates.get(date).timeSlot.get(time).available == false) {
-			throw new Error("This time is not available!");
-		}
-		
+//		else if (calendar.availableDates.get(date) == null) {
+//			throw new Error("This date is out of the range!");
+//		}
+//		else if (calendar.availableDates.get(date).available == false) {
+//			return "Date not available";
+////			throw new Error("This date is not available!");
+//		}
+//		else if (calendar.availableDates.get(date).available == true &&
+//				calendar.availableDates.get(date).timeSlot.get(time).available == true &&
+//				calendar.availableDates.get(date).timeSlot.get(time).reserved == true) {
+//			return "Reserved";
+////			throw new Error("This time has been reserved!");
+//		}
+//		
+//		else if (calendar.availableDates.get(date).available == true &&
+//				calendar.availableDates.get(date).timeSlot.get(time).available == false) {
+//			return "Time not available";
+////			throw new Error("This time is not available!");
+//		}
+//		return null;	
 	}
 	
 	public static void cancelMeeting(MyCalendar calendar ,Meeting meeting, Person person, String date, String time) {
@@ -60,19 +64,19 @@ public class Methods {
 		}
 	}
 	
-	public static void showMonthlySchedule(MyCalendar calendar, int month) {
-		Boolean flag = true;
-		int size = calendar.meetings.size();
-		for (int j = 0; j < size; j++) {
-			if (calendar.meetings.get(j).checkMonth() == month) {
-				flag = false;
-				System.out.println(calendar.meetings.get(j).toString());
-			}
-		}
-		if (flag == true) {
-			System.out.println("No meeting on this Month!");
-		}
-	}
+//	public static void showMonthlySchedule(MyCalendar calendar, int month) {
+//		Boolean flag = true;
+//		int size = calendar.meetings.size();
+//		for (int j = 0; j < size; j++) {
+//			if (calendar.meetings.get(j).checkMonth() == month) {
+//				flag = false;
+//				System.out.println(calendar.meetings.get(j).toString());
+//			}
+//		}
+//		if (flag == true) {
+//			System.out.println("No meeting on this Month!");
+//		}
+//	}
 	
 	public static void closeIndividualTS(MyCalendar calendar, String date, String time) {
 		calendar.availableDates.get(date).removeTimeSlot(time);

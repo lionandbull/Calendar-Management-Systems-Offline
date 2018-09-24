@@ -22,8 +22,9 @@ import util.MyUtility;
 public class CMABoard extends JFrame {
 
 	private JPanel contentPane;
-	public static MyCalendar myCalendar;
-
+	public static MyCalendar myCalendar = null;
+	private JComboBox comboBox_SD_Year;
+	private JComboBox comboBox_ED_Year;
 	/**
 	 * Launch the application.
 	 */
@@ -231,8 +232,10 @@ public class CMABoard extends JFrame {
 				Parameters.setOrganizer(organizer.getText());
 				Parameters.setLocation(location.getText());
 				Parameters.setName(calName.getText());
+				Parameters.setStartingDateYear((String)comboBox_SD_Year.getSelectedItem());
 				Parameters.setStartingDateMonth((String)comboBox_SD_Month.getSelectedItem());
 				Parameters.setStartingDateDay((String)comboBox_SD_Day.getSelectedItem());
+				Parameters.setEndingDateYear((String)comboBox_ED_Year.getSelectedItem());
 				Parameters.setEndingDateMonth((String)comboBox_ED_Month.getSelectedItem());
 				Parameters.setEndingDateDay((String)comboBox_ED_Day.getSelectedItem());
 				Parameters.setEarliestHourHour((String)comboBox_EH_Hour.getSelectedItem());
@@ -242,22 +245,27 @@ public class CMABoard extends JFrame {
 				String duration = (String)comboBox_duration.getSelectedItem();
 				String a = duration.substring(0, 2);
 				Parameters.setDuration(Integer.parseInt(a));
-				
-				// Change the date range of MyCalendar
-				int SD_month = Parameters.SD_month;
-				int ED_month = Parameters.ED_month;
-				int SD_day = Parameters.SD_day;
-				int ED_day = Parameters.ED_day;
-				MainFrame.panel.setCalendarPanel(2018, 2018, SD_month, ED_month, SD_day, ED_day);
-				
-				System.out.println(Parameters.myString());
+			
 				// create MyCalendar
-				Calendar startingDate_ = MyUtility.calendarSetDate(Parameters.SD_month, Parameters.SD_day);
-				Calendar endingDate_ = MyUtility.calendarSetDate(Parameters.ED_month, Parameters.ED_day);
+				Calendar startingDate_ = MyUtility.calendarSetDate(Parameters.SD_year, Parameters.SD_month, Parameters.SD_day);
+				Calendar endingDate_ = MyUtility.calendarSetDate(Parameters.ED_year, Parameters.ED_month, Parameters.ED_day);
 				Calendar earliestHour_ = MyUtility.calendarSetTime(Parameters.EH_hour, Parameters.EH_min);
 				Calendar latestHour_ = MyUtility.calendarSetTime(Parameters.LH_hour, Parameters.LH_min);
 				myCalendar = new MyCalendar(Parameters.organizer, Parameters.name, startingDate_, endingDate_, 
 						earliestHour_, latestHour_, Parameters.duration, Parameters.location);
+				for (String value : myCalendar.availableDates.keySet()) {
+					System.out.println(value);
+				}
+				
+				// Change the date range of MyCalendar
+				int SD_year = Parameters.SD_year;
+				int SD_month = Parameters.SD_month;
+				int ED_year = Parameters.ED_year;
+				int ED_month = Parameters.ED_month;
+				int SD_day = Parameters.SD_day;
+				int ED_day = Parameters.ED_day;
+				MainFrame.panel.YearBox.removeActionListener(MainFrame.panel.yearAct);
+				MainFrame.panel.setCalendarPanel(SD_year, ED_year, SD_month, ED_month, SD_day, ED_day);
 				
 				dispose();
 			}
@@ -268,23 +276,23 @@ public class CMABoard extends JFrame {
 		
 		
 		
-		JComboBox comboBox_year = new JComboBox();
-		comboBox_year.setBounds(140, 61, 61, 27);
+		comboBox_SD_Year = new JComboBox();
+		comboBox_SD_Year.setBounds(128, 61, 82, 27);
 		for (int i = 2018; i <= 2025; i++) {
-			comboBox_year.addItem(Integer.toString(i));
+			comboBox_SD_Year.addItem(Integer.toString(i));
 		}
-		contentPane.add(comboBox_year);
+		contentPane.add(comboBox_SD_Year);
 		
 		JLabel yearLabel = new JLabel("Year:");
 		yearLabel.setBounds(94, 65, 40, 16);
 		contentPane.add(yearLabel);
 		
-		JComboBox comboBox_year2 = new JComboBox();
-		comboBox_year2.setBounds(140, 89, 61, 27);
+		comboBox_ED_Year = new JComboBox();
+		comboBox_ED_Year.setBounds(128, 89, 82, 27);
 		for (int i = 2018; i <= 2025; i++) {
-			comboBox_year2.addItem(Integer.toString(i));
+			comboBox_ED_Year.addItem(Integer.toString(i));
 		}
-		contentPane.add(comboBox_year2);
+		contentPane.add(comboBox_ED_Year);
 		
 		JLabel yearLabel2 = new JLabel("Year:");
 		yearLabel2.setBounds(94, 93, 40, 16);
@@ -313,6 +321,7 @@ public class CMABoard extends JFrame {
 			}
 		}
 	}
+	
 	
 	
 }

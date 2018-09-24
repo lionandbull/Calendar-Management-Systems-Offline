@@ -6,12 +6,12 @@ import util.MyUtility;
 
 public class AvailableDate {
 	int month;
-	int day;
-	String date;
-	Boolean available = true;
-	Boolean reserved = false;
+	public int day;
+	public String date;
+	public Boolean available = true;
+	public Boolean reserved = false;
 	String error = null;
-	LinkedHashMap<String, AvailableTime> timeSlot = new LinkedHashMap<String, AvailableTime>();
+	public LinkedHashMap<String, AvailableTime> timeSlot = new LinkedHashMap<String, AvailableTime>();
 	
 	public AvailableDate(String date, int duration, Calendar earliestHour, Calendar latestHour, int day, int month) {
 		this.date = date;
@@ -55,7 +55,6 @@ public class AvailableDate {
 	
 	public void removeTimeSlot(String time) {
 		this.timeSlot.get(time).available = false;
-		this.timeSlot.get(time).reserved = false;
 	}
 	
 	public void clearTimeSlot() {

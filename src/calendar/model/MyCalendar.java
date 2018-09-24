@@ -8,12 +8,13 @@ public class MyCalendar {
 	String name;
 	String organizer;
 	String location;
-	Calendar startingDate;
-	Calendar endingDate;
+	public Calendar startingDate;
+	public Calendar endingDate;
 	Calendar earliestHour;
 	Calendar latestHour;
 	public Map<String, AvailableDate> availableDates = new HashMap<String, AvailableDate>();
 	public ArrayList<Meeting> meetings = new ArrayList<>();
+	public ArrayList<String> meetingsString = new ArrayList<>();
 	
 	int duration;
 	
@@ -43,12 +44,38 @@ public class MyCalendar {
 		}
 	}
 	
-	public void addDate(String date) {
-		if (availableDates.get(date) == null) {
-			throw new Error("This date is out of the range!");
+	public void addDate(Calendar add_date) {
+		if (add_date.after(endingDate)) {
+			Calendar now = Calendar.getInstance();
+			now = (Calendar) endingDate.clone();
+			System.out.println("hahahaha" + " " + MyUtility.calendarToDate(add_date));
+			while (add_date.after(now) || MyUtility.calendarToDate(add_date).equals(MyUtility.calendarToDate(now))) {
+				int year = now.get(Calendar.YEAR);
+				int month = now.get(Calendar.MONTH) + 1;
+				int date = now.get(Calendar.DATE);
+				int day = now.get(Calendar.DAY_OF_WEEK);
+				
+				String dateString = Integer.toString(year) + "/" + Integer.toString(month) + "/" + Integer.toString(date);
+				this.availableDates.put(dateString, new AvailableDate(dateString, duration, earliestHour, latestHour, day, month));
+				now.add(Calendar.DATE, 1);
+			}
+			endingDate = add_date;
+			System.out.println(MyUtility.calendarToDate(endingDate));
 		}
-		else {
-			availableDates.get(date).available = true;
+		else if (startingDate.after(add_date)) {
+			Calendar now = Calendar.getInstance();
+			now = (Calendar) add_date.clone();
+			while (startingDate.after(now)) {
+				int year = now.get(Calendar.YEAR);
+				int month = now.get(Calendar.MONTH) + 1;
+				int date = now.get(Calendar.DATE);
+				int day = now.get(Calendar.DAY_OF_WEEK);
+				
+				String dateString = Integer.toString(year) + "/" + Integer.toString(month) + "/" + Integer.toString(date);
+				this.availableDates.put(dateString, new AvailableDate(dateString, duration, earliestHour, latestHour, day, month));
+				now.add(Calendar.DATE, 1);
+			}
+			startingDate = add_date;
 		}
 	}
 	

@@ -51,7 +51,7 @@ public class MeetingFrameNoMeeting extends JFrame {
 	 */
 	public MeetingFrameNoMeeting(String year, String month, String day) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Schedule a meeting on " + year + "-" + "-" + month + "-" + day);
+		setTitle("Schedule a meeting on " + year + "-" + month + "-" + day);
 		setBounds(100, 100, 450, 300);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -76,9 +76,8 @@ public class MeetingFrameNoMeeting extends JFrame {
 				String date;
 				String time;
 				date = year + "/" + month + "/" + day;
-				time = ((String) comboBox_time.getSelectedItem()).substring(0, 4);
+				time = MyUtility.GetFirstTime(((String) comboBox_time.getSelectedItem()));
 				Methods.scheduleMeeting(CMABoard.myCalendar, person, date, time);
-				System.out.println(CMABoard.myCalendar.meetings);
 				dispose();
 			}
 		});
@@ -87,9 +86,17 @@ public class MeetingFrameNoMeeting extends JFrame {
 		
 		comboBox_time = new JComboBox();
 		ArrayList<String> timeArrayList = CMABoard.myCalendar.availableDates.values().iterator().next().toTimeArrayList();
-		
+		String date = year + "/" + month + "/" + day;
+		String tmpTime;
 		for (String i : timeArrayList) {
-			comboBox_time.addItem(i);
+			tmpTime = MyUtility.GetFirstTime(i);
+			if (CMABoard.myCalendar.availableDates.get(date).timeSlot.get(tmpTime).reserved == true || 
+					CMABoard.myCalendar.availableDates.get(date).timeSlot.get(tmpTime).available == false) {
+				continue;
+			}
+			else {
+				comboBox_time.addItem(i);
+			}
 		}
 		
 		
