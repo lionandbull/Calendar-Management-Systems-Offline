@@ -1,32 +1,45 @@
 package calendar.gui.frame;
 
 import java.util.Calendar;
+
+import calendar.model.MyCalendar;
 	
 public class Parameters {
 	
 	// Starting date
-	static int SD_month;
-	static int SD_day;
+	public static int SD_year;
+	public static int SD_month;
+	public static int SD_day;
 	// Ending date
-	static int ED_month;
-	static int ED_day;
+	public static int ED_year;
+	public static int ED_month;
+	public static int ED_day;
 	// Earliest Hour
-	static int EH_hour;
-	static int EH_min;
+	public static int EH_hour;
+	public static int EH_min;
 	// Latest Hour
-	static int LH_hour;
-	static int LH_min;
-	static String name;
-	static String organizer;
-	static String location;
-	static int duration;
+	public static int LH_hour;
+	public static int LH_min;
+	public static String name;
+	public static String organizer;
+	public static String location;
+	public static int duration;
 	
+	public static void setFromMyCalendar(MyCalendar mc) {
+		
+	}
 	// -------------- Set starting/ending dates and earliest/latest hours ------------------
+	public static void setStartingDateYear(String year) {
+		SD_year = Integer.parseInt(year);
+	}
 	public static void setStartingDateMonth(String month) {
 		SD_month = Integer.parseInt(month);
 	}
 	public static void setStartingDateDay(String day) {
 		SD_day = Integer.parseInt(day);
+	}
+	public static void setEndingDateYear(String year) {
+		ED_year = Integer.parseInt(year);
 	}
 	public static void setEndingDateMonth(String month) {
 		ED_month = Integer.parseInt(month);
@@ -69,7 +82,8 @@ public class Parameters {
 	
 	
 	public static String myString() {
-		String s = Integer.toString(SD_month) + Integer.toString(SD_day) + Integer.toString(ED_month) + Integer.toString(ED_day) +
+		String s = Integer.toString(SD_year) + "/" + Integer.toString(SD_month) + "/" + Integer.toString(SD_day) + "-" + Integer.toString(ED_year)
+		+ "/" +Integer.toString(ED_month) + "/" + Integer.toString(ED_day) + " " +
 				Integer.toString(EH_hour) + Integer.toString(EH_min) + Integer.toString(LH_hour) + Integer.toString(LH_min) + Integer.toString(duration);
 		s = s + name + location + organizer;
 		return s;

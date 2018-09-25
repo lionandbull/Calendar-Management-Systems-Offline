@@ -4,8 +4,8 @@ import java.util.*;
 public class Meeting {
 	String location;
 	Person person;
-	String meetDate;
-	String meetTime;
+	public String meetDate;
+	public String meetTime;
 	
 	public Meeting(Person person, String meetDate, String meetTime, String location) {
 		this.person = person;
@@ -23,10 +23,10 @@ public class Meeting {
 		return s;
 	}
 	
-	public int checkMonth() {
+	public String checkMonth() {
 		String s = "";
 		int size = meetDate.length();
-		for (int j = 0; j < size; j++) {
+		for (int j = 5; j < size; j++) {
 			if (meetDate.charAt(j) != '/') {
 				s += meetDate.charAt(j);
 			}
@@ -34,6 +34,12 @@ public class Meeting {
 				break;
 			}
 		}
-		return Integer.parseInt(s);
+		return meetDate.substring(0, 5) + s;
 	}
+	
+	public String getLocation() { return location; }
+	public String getPerson() { return person.name; }
+	public String getMeetDate() { return meetDate; }
+	public String getMeetTime() { return meetTime; }
+
 }
