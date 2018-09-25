@@ -1,17 +1,19 @@
 package calendar.gui.frame;
 
 import java.util.Calendar;
+
+import calendar.model.MyCalendar;
 	
 public class Parameters {
 	
 	// Starting date
-	static int SD_year;
-	static int SD_month;
-	static int SD_day;
+	public static int SD_year;
+	public static int SD_month;
+	public static int SD_day;
 	// Ending date
-	static int ED_year;
-	static int ED_month;
-	static int ED_day;
+	public static int ED_year;
+	public static int ED_month;
+	public static int ED_day;
 	// Earliest Hour
 	static int EH_hour;
 	static int EH_min;
@@ -23,6 +25,9 @@ public class Parameters {
 	static String location;
 	static int duration;
 	
+	public static void setFromMyCalendar(MyCalendar mc) {
+		
+	}
 	// -------------- Set starting/ending dates and earliest/latest hours ------------------
 	public static void setStartingDateYear(String year) {
 		SD_year = Integer.parseInt(year);

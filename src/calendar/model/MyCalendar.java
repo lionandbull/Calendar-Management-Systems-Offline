@@ -4,7 +4,7 @@ import java.util.*;
 import util.MyUtility;
 
 
-public class MyCalendar {
+public class MyCalendar implements Comparable<MyCalendar>{
 	String name;
 	String organizer;
 	String location;
@@ -44,6 +44,10 @@ public class MyCalendar {
 		}
 	}
 	
+	public MyCalendar() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addDate(Calendar add_date) {
 		if (add_date.after(endingDate)) {
 			Calendar now = Calendar.getInstance();
@@ -79,36 +83,26 @@ public class MyCalendar {
 		}
 	}
 	
-	public void removeDate(String date) {
-		if (availableDates.get(date) == null) {
-			throw new Error("This date is out of the range!");
-		}
-		else {
-			availableDates.get(date).available = false;
-			// Set all timeslots to false
-			availableDates.get(date).clearTimeSlot();
-		}
-	}
-	
 	public void addMeeting(Meeting meeting) {
 		this.meetings.add(meeting);
 	}
 	
-//	public static void main(String[] args) {
-//		Calendar startingDate = Calendar.getInstance();
-//		Calendar endingDate = Calendar.getInstance();
-//		Calendar earliestHour = Calendar.getInstance();
-//		Calendar latestHour = Calendar.getInstance();
-//		startingDate.set(Calendar.MONTH, 1);
-//		startingDate.set(Calendar.DATE, 1);
-//		endingDate.set(Calendar.MONTH, 2);
-//		endingDate.set(Calendar.DATE, 10);
-//		int duration = 20;
-//		String location = "home";
-//		MyCalendar test = new MyCalendar("Personal", "Wade", startingDate, endingDate, earliestHour, 
-//				latestHour, duration, location);
-//		System.out.println(test.availableDates);
-//	}
+	public String getName() { return name; }
+	public String getOrganizer() { return organizer; }
+	public String getLocation() { return location; }
+	public String getStartDate() { return MyUtility.calendarToDate(startingDate); }
+	public String getEndDate() { return MyUtility.calendarToDate(endingDate); }
+	public String getEarliestHour() { return MyUtility.calendarToTime(earliestHour); }
+	public String getLatestHour() { return MyUtility.calendarToTime(latestHour); }
+	public String getDuration() { return Integer.toString(duration); }
+	
+	@Override
+	public int compareTo(MyCalendar o) {
+		// TODO Auto-generated method stub
+		return name.compareTo(o.getName());
+	}
+	
+	
 }
 	
 

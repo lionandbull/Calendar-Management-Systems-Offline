@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 
 import calendar.gui.frame.CMABoard;
 import calendar.gui.frame.MainFrame;
+import calendar.gui.frame.Parameters;
 import calendar.model.AvailableTime;
 import calendar.model.Meeting;
 import calendar.model.MyCalendar;
@@ -22,8 +23,40 @@ public class MyUtility {
 		return calendar;
 	}
 	
+	public static Calendar calendarSetDate(String s) {
+		Calendar calendar = Calendar.getInstance();
+		int year = Integer.parseInt(s.substring(0, 4));
+		int month;
+		int j = 5;
+		System.out.println(s);
+		while(!s.substring(j, j + 1).equals("/")) {
+			j++;
+		}
+		month = Integer.parseInt(s.substring(5, j));
+		int date = Integer.parseInt(s.substring(j+1, s.length()));
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month - 1);
+		calendar.set(Calendar.DATE, date);
+		return calendar;
+	}
+	
 	public static Calendar calendarSetTime(int hour, int minute) {
 		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, hour);
+		calendar.set(Calendar.MINUTE, minute);
+		return calendar;
+	}
+	
+	public static Calendar calendarSetTime(String s) {
+		Calendar calendar = Calendar.getInstance();
+		int hour;
+		int i = 0;
+		while (!s.substring(i, i + 1).equals(":")) {
+			i ++;
+		}
+		hour = Integer.parseInt(s.substring(0, i));
+		int minute = Integer.parseInt(s.substring(i+1, s.length()));
+		
 		calendar.set(Calendar.HOUR_OF_DAY, hour);
 		calendar.set(Calendar.MINUTE, minute);
 		return calendar;
@@ -151,6 +184,13 @@ public class MyUtility {
 		int ED_month = MyUtility.DateStringToInts(MyUtility.calendarToDate(CMABoard.myCalendar.endingDate)).get(1);
 		int SD_day = MyUtility.DateStringToInts(MyUtility.calendarToDate(CMABoard.myCalendar.startingDate)).get(2);
 		int ED_day = MyUtility.DateStringToInts(MyUtility.calendarToDate(CMABoard.myCalendar.endingDate)).get(2);
+		Parameters.SD_year = SD_year;
+		Parameters.SD_month = SD_month;
+		Parameters.SD_day = SD_day;
+		Parameters.ED_year = ED_year;
+		Parameters.ED_month = ED_month;
+		Parameters.ED_day = ED_day;
+		
 		MainFrame.panel.YearBox.removeActionListener(MainFrame.panel.yearAct);
 		MainFrame.panel.setCalendarPanel(SD_year, ED_year, SD_month, ED_month, SD_day, ED_day);
 	}

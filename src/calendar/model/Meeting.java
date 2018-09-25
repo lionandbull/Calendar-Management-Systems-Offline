@@ -36,4 +36,10 @@ public class Meeting {
 		}
 		return meetDate.substring(0, 5) + s;
 	}
+	
+	public String getLocation() { return location; }
+	public String getPerson() { return person.name; }
+	public String getMeetDate() { return meetDate; }
+	public String getMeetTime() { return meetTime; }
+
 }

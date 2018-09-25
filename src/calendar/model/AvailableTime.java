@@ -17,4 +17,8 @@ public class AvailableTime {
 		this.reserved = false;
 	}
 	
+	public String getTime() { return time; }
+	public Boolean getAvailable() { return available; }
+	public Boolean getReserved() { return reserved; }
+	
 }

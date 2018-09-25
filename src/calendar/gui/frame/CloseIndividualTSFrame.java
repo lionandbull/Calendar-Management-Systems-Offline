@@ -96,6 +96,22 @@ public class CloseIndividualTSFrame extends JFrame {
 							}
 						}
 						s = tmp;
+						AvailableTime thisTime = CMABoard.myCalendar.availableDates.get(s).timeSlot.get(MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()));
+//						System.out.println(s);
+//						System.out.println(comboBox_1.getSelectedItem());
+//						System.out.println(thisTime.reserved);
+						thisTime.reserved = true;
+						Object[] options = {"Ok"};
+						int response = JOptionPane.showOptionDialog(contentPane, 
+								"You have closed the time:\n " 
+										+ s + " " + MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()), 
+								"Succeed!",
+								JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						if(response==0)
+						{ 
+				
+						}
+						dispose();
 					}
 					else {
 						Object[] options = {"Ok"};
@@ -106,26 +122,21 @@ public class CloseIndividualTSFrame extends JFrame {
 								JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						if(response==0)
 						{ 
-				
+							
 						}
 					}
 				}
-				AvailableTime thisTime = CMABoard.myCalendar.availableDates.get(s).timeSlot.get(MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()));
-//				System.out.println(s);
-//				System.out.println(comboBox_1.getSelectedItem());
-//				System.out.println(thisTime.reserved);
-				thisTime.reserved = true;
+				
 				Object[] options = {"Ok"};
 				int response = JOptionPane.showOptionDialog(contentPane, 
-						"You have closed the time:\n " 
-								+ s + " " + MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()), 
-						"Succeed!",
+						"You haven't typed anything.", 
+						"Warning",
 						JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if(response==0)
 				{ 
 		
 				}
-				dispose();
+				
 			}
 		});
 	

@@ -85,7 +85,8 @@ public class CloseTimeSlotsFrame extends JFrame {
 
 	//If a string was returned, say so.
 	if ((s != null) && (s.length() > 0)) {
-			if (MyUtility.isValidDate(s)) {
+			
+		if (MyUtility.isValidDate(s)) {
 				String tmp;
 				if (s.substring(5, 6).equals("0")) {
 					if (s.substring(8, 9).equals("0")) {
@@ -130,6 +131,15 @@ public class CloseTimeSlotsFrame extends JFrame {
 				}
 			}
 		}
+	Object[] options = {"Ok"};
+	int response = JOptionPane.showOptionDialog(contentPane, 
+			"You haven't typed anything.", 
+			"Warning",
+			JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+	if(response==0)
+	{ 
+
+	}
 	
 	}
 });

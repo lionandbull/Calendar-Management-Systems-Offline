@@ -90,10 +90,7 @@ public class Methods {
 		}
 	}
 	
-	public static void closeDateTS(MyCalendar calendar, String date) {
-		calendar.removeDate(date);
-	}
-	
+
 	public static void closeTimeTS(MyCalendar calendar, String time) {
 		for (AvailableDate value : calendar.availableDates.values()) {
 			value.removeTimeSlot(time);

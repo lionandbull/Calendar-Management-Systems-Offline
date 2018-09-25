@@ -79,17 +79,91 @@ public class CloseTSOfDAYOfWeekAndTime extends JFrame {
 						value.timeSlot.get(time).available = false;
 					}
 				}
-
 				Object[] options = {"Ok"};
-				int response = JOptionPane.showOptionDialog(contentPane, 
-						"You have closed the time:\n " 
-								+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + "\n of the number " + dayOfWeek +  " of each week.", 
-						"Succeed!",
-						JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-				if(response==0)
-				{ 
-		
+				int response;
+				switch (dayOfWeek) {
+				case "1":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Monday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+
+				case "2":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Tuesday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+					
+				case "3":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Wednesday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+				case "4":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Thursday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+				case "5":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Friday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+				case "6":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Saturday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+				case "7":
+					response = JOptionPane.showOptionDialog(contentPane, 
+							"You have closed the time:\n " 
+									+ MyUtility.GetFirstTime((String)comboBox_1.getSelectedItem()) + " of each Sunday", 
+							"Succeed!",
+							JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					if(response==0)
+					{ 
+			
+					}
+					break;
+					
 				}
+				
 				dispose();
 			}
 		});
@@ -97,7 +171,7 @@ public class CloseTSOfDAYOfWeekAndTime extends JFrame {
 		contentPane.add(inputPanle, BorderLayout.CENTER);
 		
 		comboBox = new JComboBox();
-		for (int i = 0 ; i < 8; i++) {
+		for (int i = 1 ; i < 8; i++) {
 			comboBox.addItem(Integer.toString(i));
 		}
 		

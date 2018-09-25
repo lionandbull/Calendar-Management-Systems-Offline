@@ -10,7 +10,6 @@ public class AvailableDate {
 	public String date;
 	public Boolean available = true;
 	public Boolean reserved = false;
-	String error = null;
 	public LinkedHashMap<String, AvailableTime> timeSlot = new LinkedHashMap<String, AvailableTime>();
 	
 	public AvailableDate(String date, int duration, Calendar earliestHour, Calendar latestHour, int day, int month) {
@@ -77,5 +76,11 @@ public class AvailableDate {
 		}
 		return returnArray;
 	}
-	 
+	
+	public String getMonth() { return Integer.toString(month); }
+	public String getDay() { return Integer.toString(day); }
+	public String getDate() { return date; }
+	public boolean getAvailable() { return available; }
+	public boolean getReserved() { return reserved; }
+	
 }

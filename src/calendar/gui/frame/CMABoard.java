@@ -298,9 +298,11 @@ public class CMABoard extends JFrame {
 		yearLabel2.setBounds(94, 93, 40, 16);
 		contentPane.add(yearLabel2);
 		
-		
-		
-		
+
+	}
+	public static void load(MyCalendar cm) {
+		myCalendar = cm;
+		MyUtility.UpdateDate();
 		
 	}
 	protected void updateComboBox(String month, JComboBox cb) {

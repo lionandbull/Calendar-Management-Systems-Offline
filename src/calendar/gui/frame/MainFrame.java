@@ -34,6 +34,7 @@ public class MainFrame extends JFrame {
 	public PanelAction panelAction = new PanelAction();
 	public JToolBar toolBar;  
 	public JToolBar toolBar2;
+	public ArrayList<MyCalendar> myCalendars = new ArrayList<>();
 	
 	
 	
@@ -83,17 +84,32 @@ public class MainFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {  
 		String btnName = e.getActionCommand();  
 		if (btnName == "New calendar") {
+			if (myCalendars.size() == 0) {
+				new CMABoard();
+			}
+			else {
+				myCalendars.add(CMABoard.myCalendar);
+				new CMABoard();
+			}
 			
-			new CMABoard();
 			
 		}
 		else if (btnName == "Load calendar") {
-			
+			if (myCalendars.size() == 0) {
+					JOptionPane.showMessageDialog(panel,
+							"There is no available calendar, please create a new calendar.",
+							"Error",
+						    JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				CMABoard.load(myCalendars.get(0));
+			}
 		}
+		
 		else if (btnName == "Add Date") {
 			if (CMABoard.myCalendar == null) {
 				JOptionPane.showMessageDialog(panel,
-						"There is no available calendar, please create a new calendar or upload an existed calendar.",
+						"There is no available calendar, please create a new calendar or load an existed calendar.",
 						"Error",
 					    JOptionPane.ERROR_MESSAGE);
 				return;
@@ -137,6 +153,7 @@ public class MainFrame extends JFrame {
 					CMABoard.myCalendar.addDate(MyUtility.calendarSetDate(year, month, day));
 					MyUtility.UpdateDate();
 					
+					
 				}
 				else {
 					Object[] options = {"Ok"};
@@ -166,7 +183,7 @@ public class MainFrame extends JFrame {
 			
 			if (CMABoard.myCalendar == null) {
 				JOptionPane.showMessageDialog(panel,
-						"There is no available calendar, please create a new calendar or upload an existed calendar.",
+						"There is no available calendar, please create a new calendar or load an existed calendar.",
 						"Error",
 					    JOptionPane.ERROR_MESSAGE);
 			}
@@ -183,7 +200,7 @@ public class MainFrame extends JFrame {
 		else if (btnName == "Close Date") {
 			if (CMABoard.myCalendar == null) {
 				JOptionPane.showMessageDialog(panel,
-						"There is no available calendar, please create a new calendar or upload an existed calendar.",
+						"There is no available calendar, please create a new calendar or load an existed calendar.",
 						"Error",
 					    JOptionPane.ERROR_MESSAGE);
 			}
@@ -197,23 +214,24 @@ public class MainFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainFrame frame = new MainFrame();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainFrame(ArrayList<MyCalendar> calendars) {
+		this.myCalendars = calendars;
 		this.setTitle("Calendar Management System");
 		this.setSize(550, 500);
 		this.add(buildToolBar(), BorderLayout.NORTH);  
@@ -224,6 +242,9 @@ public class MainFrame extends JFrame {
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		if (myCalendars.size() != 0) {
+			CMABoard.load(myCalendars.get(myCalendars.size() - 1));
+		}
 	}
 	
 
