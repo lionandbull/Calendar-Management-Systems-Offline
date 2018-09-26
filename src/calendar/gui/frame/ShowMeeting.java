@@ -16,10 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 import calendar.model.Meeting;
+import calendar.model.Methods;
 import util.MyUtility;
 
 public class ShowMeeting extends JFrame implements ActionListener{
@@ -29,7 +31,8 @@ public class ShowMeeting extends JFrame implements ActionListener{
 	private JButton btnMonthlyMeeting = new JButton("Monthly Meeting");
 	private JButton btnAllMeeting = new JButton("All Meeting");
 	private DefaultListModel<Meeting> listModel = new DefaultListModel<Meeting>();
-	
+	private JList meetingList;
+	private JButton removeBtn = new JButton("Remove meeting");
 	/**
 	 * Launch the application.
 	 */
@@ -69,21 +72,43 @@ public class ShowMeeting extends JFrame implements ActionListener{
 		btnAllMeeting.addActionListener(this);
 		btnMonthlyMeeting.addActionListener(this);
 		btnDailyButton.addActionListener(this);
-		 
+		removeBtn.addActionListener(this);
+	
 		
-		JList meetingList = new JList<Meeting>();
+		meetingList = new JList<Meeting>();
 		meetingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(meetingList);
 		
 		meetingList.setModel(listModel);
-		listModel.addElement(CMABoard.myCalendar.meetings.iterator().next());
-	
 		
-		this.add(scrollPane, BorderLayout.CENTER);
-		this.add(toolBar, BorderLayout.NORTH);
+		
+		btnAllMeeting.doClick();
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		getContentPane().add(toolBar, BorderLayout.NORTH);
+		getContentPane().add(removeBtn, BorderLayout.SOUTH);
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == removeBtn) {
+			System.out.println(meetingList.getSelectedValue());
+			if (meetingList.getSelectedValue() == null) {
+				JOptionPane.showMessageDialog(this,
+						"Please choose a meeting to delete.",
+						"Warning",
+					    JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+				Methods.cancelMeeting(CMABoard.myCalendar, (Meeting) meetingList.getSelectedValue());
+				JOptionPane.showMessageDialog(this,
+						"You have remove this meeting successfully.",
+						"Succeed!",
+					    JOptionPane.WARNING_MESSAGE);
+				listModel = new DefaultListModel<Meeting>();
+				meetingList.setModel(listModel);
+				btnAllMeeting.doClick();
+			}
+		}
 		if(e.getSource() == btnAllMeeting) {
 			listModel.removeAllElements();
 			for (Meeting value : CMABoard.myCalendar.meetings) {

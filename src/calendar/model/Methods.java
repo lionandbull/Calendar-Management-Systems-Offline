@@ -37,9 +37,14 @@ public class Methods {
 //		return null;	
 	}
 	
-	public static void cancelMeeting(MyCalendar calendar ,Meeting meeting, Person person, String date, String time) {
-		meeting = null;
-		calendar.availableDates.get(date).timeSlot.get(time).reserved = false;
+	public static void cancelMeeting(MyCalendar calendar ,Meeting meeting) {
+		for (Meeting value : calendar.meetings) {
+			if (value.meetDate == meeting.meetDate && value.meetTime == meeting.meetTime && value.person == meeting.person) {
+				calendar.meetings.remove(value);
+				break;
+			}
+		}
+		calendar.availableDates.get(meeting.meetDate).timeSlot.get(meeting.meetTime).reserved = false;
 	}
 	
 	public static ArrayList<String> showDailySchedule(MyCalendar calendar, String date) {

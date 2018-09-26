@@ -84,8 +84,8 @@ public class MyUtility {
 		return timeString;
 	}
 	
-	public static String CalendarRange(String start, String end) {
-		String s = "\"" + Parameters.name + "\"" + " calendar : range from ";
+	public static String CalendarRange(String name,String start, String end) {
+		String s = "\"" + name + "\"" + " calendar : range from ";
 		s = s + start + " to ";
 		s = s + end;
 		return s;

@@ -158,12 +158,16 @@ public class MainFrame extends JFrame {
 				for (MyCalendar mc : myCalendars) {
 					if (mc.getName().equals(s)) {
 						myCalendars.remove(i);
+						if (myCalendars.size() == 0) {
+							panel.initializePanle();
+						}
 						return;
 					}
 					i++;
 				}
 				
 			}
+			
 			
 		}
 		}

@@ -91,7 +91,7 @@ public class CalendarPanel extends JPanel implements ActionListener{
 			
 			String startDate = (String)YearBox.getItemAt(0) + "-01-01";
 			String endDate = (String)YearBox.getItemAt((int)YearBox.getItemCount() - 1) + "-12-31";
-			calendarRange.setText(MyUtility.CalendarRange(startDate, endDate));
+			calendarRange.setText(MyUtility.CalendarRange("null", startDate, endDate));
 			
 			//年份,月份,查看,今天
 			JPanel panel_board = new JPanel();
@@ -136,7 +136,30 @@ public class CalendarPanel extends JPanel implements ActionListener{
 			
 			
 		}
-
+		
+		public void initializePanle() {
+			for (int i = 0; i < 42; i++) {
+				button_day[i].removeActionListener(this);
+			}
+			//当前年份前10年和未来20年时间区间
+			for(int i = now_year - 10; i <= now_year + 7; i++){
+				YearBox.addItem(i + "");
+			}
+			YearBox.setSelectedIndex(10);
+			
+			//12个月的月份区间
+			for(int i = 1; i < 13; i++){
+				MonthBox.addItem(i + "");
+			}
+			MonthBox.setSelectedIndex(now_month);
+			
+			String startDate = (String)YearBox.getItemAt(0) + "-01-01";
+			String endDate = (String)YearBox.getItemAt((int)YearBox.getItemCount() - 1) + "-12-31";
+			calendarRange.setText(MyUtility.CalendarRange("null", startDate, endDate));
+			
+			printDay();
+		}
+		
 		public void setCalendarPanel(int startYear, int endYear, int startMonth, int endMonth, int startDate, int endDate) {
 			new_flag = true;
 			startYear_ = startYear;
@@ -156,7 +179,8 @@ public class CalendarPanel extends JPanel implements ActionListener{
 			}
 			String start = Integer.toString(startYear) + "-" + Integer.toString(startMonth) + "-" + Integer.toString(startDate);
 			String end = Integer.toString(endYear) + "-" + Integer.toString(endMonth) + "-" + Integer.toString(endDate);
-			calendarRange.setText(MyUtility.CalendarRange(start, end));
+			calendarRange.setText(MyUtility.CalendarRange(Parameters.name, start, end));
+			
 			
 			//Starting year and ending year
 			YearBox.removeAllItems();
