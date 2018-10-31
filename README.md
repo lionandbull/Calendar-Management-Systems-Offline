@@ -1,4 +1,4 @@
-# Calendar Management System (Temporary Off-Line)
+# Calendar Management System
 
 The Calendar Management System (CMS) can help user to manage their meetings.
 
